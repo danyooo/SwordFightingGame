@@ -2,6 +2,12 @@
 
 ## <ins>**Collaborators:**</ins>
 Download [godot engine](https://godotengine.org/download/windows/)  
+<ins>to sign in with git follow these steps</ins>
+* clone the repository using git bash
+* open the project in godot
+* go to project > version control settings
+* Create a github [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+  
 For design use [penpot](https://penpot.app/design/layout)  (ask for invite to team)
 
 
