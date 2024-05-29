@@ -43,18 +43,44 @@ Use knowledge from lesson on Object Oriented Programming by creating classes to 
 Persistent storage -- Store valid dictionary words so the API doesn’t need to be called every time the game starts (Call API every once in a while OR call on first bootup only)
 
 ## <ins>Milestones</ins>
-* Read player inputs ( 1 day) -- Learn how to read player inputs in godot’s language(GDSCRIPT)
-* Use player inputs to move the character(1 day)
-* Swords have hitboxes and can hit each other(~2 days)
-* Typing correctly sets sword length(1 day)
-* Swords have physics(mass, weight, a ‘force’ behind it.) [~3 days]
-* Swords upon hitting each other react accordingly (Lose durability, apply knockback to opponent depending on mass) (~1-2 days)
-* Words previously typed cannot be typed again(1 day)
-* Timer that counts down, and upon reaching zero, ends the round( 1 day)
-* Point system ( 1 day)
-* Request valid words from dictionary API(~1 day)
-* Read and write valid words from API to storage (~1-2 days)
+
+* Scaffold the game
+* Round Manager
+  * Once the timer runs out the round is restarted properly,
+  * points are counted properly once scored by a player.
+* Input
+  * Proper input detection from mouse / keyboard and gamepad
+* Words
+  * Players can type recognized and valid words that modify a swords size
+  * words are properly flagged as invalid once used once
+* Sword(s)
+  * Swords grow in size depending on the word typed by the player(s) 
+  * have proper physics, damage, mass, weight, etc behind them 
+  * can collide with each other, players, and arena walls.
+*Player
+  * Player movement, health, and physics are in working order
+  * Damaged by swords 
+  * Store wins and words previously used
 
 
+
+
+
+
+
+
+
+
+
+-Use player inputs to move the character(1 day)
+-Swords have hitboxes and can hit each other(~2 days)
+-Typing correctly sets sword length(1 day)
+-Swords have physics(mass, weight, a ‘force’ behind it.) [~3 days]
+-Swords upon hitting each other react accordingly (Lose durability, apply knockback to opponent depending on mass) (1~2 days)
+-Words previously typed cannot be typed again( 1 day)
+- Timer that counts down, and upon reaching zero, ends the round (1 day)
+- Point system ( 1 day)
+-Request valid words from dictionary API(~1 day)
+-Read and write valid words from API to storage (~1-2 days)
 
 
