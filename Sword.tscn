@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct454r81oyqmo"]
+
+[ext_resource type="Script" path="res://Sword.gd" id="1_vl1r2"]
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(1.91892, 2.02307)
+
+[node name="Sword" type="Sprite2D" parent="."]
+script = ExtResource("1_vl1r2")
