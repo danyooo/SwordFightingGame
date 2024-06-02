@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://icon.svg" id="1_pcvt8"]
 [ext_resource type="Script" path="res://PlayerScript.gd" id="2_fmmp0"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="3_b5nkv"]
-[ext_resource type="Script" path="res://ControlsBut.gd" id="4_7cirb"]
-[ext_resource type="Script" path="res://PlayBut.gd" id="5_n5048"]
-[ext_resource type="Script" path="res://HowToPlayBut.gd" id="6_rwfig"]
+[ext_resource type="Script" path="res://ControlsBtn.gd" id="4_7cirb"]
+[ext_resource type="Script" path="res://PlayBtn.gd" id="5_n5048"]
+[ext_resource type="Script" path="res://HowToPlayBtn.gd" id="6_rwfig"]
 [ext_resource type="Script" path="res://Word.gd" id="7_haqxf"]
 
 [node name="game" type="Node"]
@@ -21,21 +21,21 @@ script = ExtResource("3_b5nkv")
 
 [node name="MainMenu" type="Node" parent="."]
 
-[node name="ControlsBut" type="Button" parent="MainMenu"]
+[node name="ControlsBtn" type="Button" parent="MainMenu"]
 offset_left = 1182.0
 offset_top = 688.0
 offset_right = 1190.0
 offset_bottom = 696.0
 script = ExtResource("4_7cirb")
 
-[node name="PlayBut" type="Button" parent="MainMenu"]
+[node name="PlayBtn" type="Button" parent="MainMenu"]
 offset_left = 591.0
 offset_top = 344.0
 offset_right = 599.0
 offset_bottom = 352.0
 script = ExtResource("5_n5048")
 
-[node name="HowToPlayBut" type="Button" parent="MainMenu"]
+[node name="HowToPlayBtn" type="Button" parent="MainMenu"]
 offset_left = 591.0
 offset_top = 344.0
 offset_right = 599.0
