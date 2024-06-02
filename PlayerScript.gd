@@ -48,5 +48,9 @@ func _process(delta):
 	# How much momentum was the enemysword going by?
 	# What's the enemysword's damage stat? ( based on a swords weight/size)
 	# Multiply momentum x damage and apply damage to health!
+	
+# function that, while on the choosing worde scene, takes the players inputs into a list
+# After taking them into a list, merge these into a single string to form a word.
+# Pass this onto the word node.
 
 
