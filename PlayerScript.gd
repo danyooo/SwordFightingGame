@@ -43,7 +43,7 @@ func _process(delta):
 #If <dodgekey> is pressed...
 
 	# Dodge! ( Snap the player forwards in the current direction they're moving in)
-	
+	# This will depend on the sword the player is wielding. The larger and heavier it is, the less distance and higher cooldown.
 #If <enemysword> touches player..
 	# How much momentum was the enemysword going by?
 	# What's the enemysword's damage stat? ( based on a swords weight/size)

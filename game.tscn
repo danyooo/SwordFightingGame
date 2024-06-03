@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drpmoq3lwnjwr"]
+[gd_scene load_steps=11 format=3 uid="uid://drpmoq3lwnjwr"]
 
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://icon.svg" id="1_0w42w"]
 [ext_resource type="Script" path="res://PlayerScript.gd" id="2_qw4xq"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://HowToPlayBtn.gd" id="6_ft8r5"]
 [ext_resource type="Script" path="res://Word.gd" id="7_yr0mw"]
 [ext_resource type="Script" path="res://Arena.gd" id="8_2t2kr"]
+[ext_resource type="Script" path="res://Sword.gd" id="9_o5hk0"]
+[ext_resource type="Script" path="res://RoundMngr.gd" id="10_ao007"]
 
 [node name="game" type="Node"]
 
@@ -48,3 +50,9 @@ script = ExtResource("7_yr0mw")
 
 [node name="Arena" type="StaticBody2D" parent="."]
 script = ExtResource("8_2t2kr")
+
+[node name="Sword" type="Node" parent="."]
+script = ExtResource("9_o5hk0")
+
+[node name="RoundMngr" type="Node" parent="."]
+script = ExtResource("10_ao007")
