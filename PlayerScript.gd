@@ -51,7 +51,7 @@ func _process(delta):
 		velocity = Vector2.DOWN.rotated(rotation) * speed
 		print("moved down")
 		#If "S" key isn't pressed, nothing happens
-	else:
+	elif !Input.Is_action_pressed( 'Up' || 'Down' || 'Left' || 'Right'):
 		velocity= Vector2.ZERO
 			
 			
