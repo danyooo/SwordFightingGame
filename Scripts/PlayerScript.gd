@@ -2,10 +2,7 @@ extends Sprite2D
 # Player variables
 # Speed
 var speed = 500
-# Rotation Speed
-var angspeed = 5
-# Direction node ( to turn the player)
-var direction = 0
+
 # Health varaible
 # Mass/Weight(?) For knockback when hit.
 # 'Wins' Variable
@@ -15,31 +12,27 @@ var direction = 0
 var velocity = Vector2.ZERO
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _process(delta):
-	# Rotation is the rotation speed multiplied by the chosen direction multiplied by the time between frames ( to keep a smoooth look if FPS drops)
-	rotation += angspeed * direction * delta
+	velocity = Vector2.ZERO
 	# If up is pressed..
 	if Input.is_action_pressed("Up"):
 		# Go up!
-		velocity = Vector2.UP.rotated(rotation) * speed
-# if "W" isn't actively held down don't move the character
-	else:
-		velocity= Vector2.ZERO
-	
-
-	position += velocity * delta
+		velocity += Vector2.UP.rotated(rotation)
 # If left is pressed..
 	if Input.is_action_pressed("Left"):
 		# Go left!
-		direction = -1
-		print("moved left")
-	# if the keys aren't actively pressed down dont turn
-	else:
-		direction = 0
+		velocity += Vector2.LEFT.rotated(rotation)
 		# If Right is pressed...
 	if Input.is_action_pressed("Right"):
 		# Go right!
-		direction = 1
-		print("moved right")
+		velocity += Vector2.RIGHT.rotated(rotation)
+		
+		
+	if Input.is_action_pressed("Down"):
+	# Go down!
+		
+		velocity += Vector2.DOWN.rotated(rotation)
+		# makes diagonal movement not fast
+	position += velocity.normalized() * speed * delta 
 #If <dodgekey> is pressed...
 
 	# Dodge! ( Snap the player forwards in the current direction they're moving in)

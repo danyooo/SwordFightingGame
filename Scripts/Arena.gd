@@ -1,3 +1,4 @@
+
 extends StaticBody2D
 # Variable "timer"
 # Function to check if anything collides with this object
