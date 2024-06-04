@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="S(word) Fighting Game"
-run/main_scene="res://label.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
