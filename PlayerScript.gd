@@ -34,24 +34,28 @@ func _process(delta):
 	if Input.is_action_pressed("Left"):
 		# Go left!
 		velocity = Vector2.LEFT.rotated(rotation) * speed
+
 		print("moved left")
 	# if the keys aren't actively pressed down dont turn
 	
 		
 		# If Right is pressed...
-	if Input.is_action_pressed("Right"):
+	elif Input.is_action_pressed("Right"):
 		# Go right!
 		velocity = Vector2.RIGHT.rotated(rotation) * speed
 		print("moved right")
+
 		
 		
-	if Input.is_action_pressed("Down"):
+	elif Input.is_action_pressed("Down"):
 	# Go down!
 		
 		velocity = Vector2.DOWN.rotated(rotation) * speed
 		print("moved down")
-		#If "S" key isn't pressed, nothing happens
-	elif !Input.Is_action_pressed( 'Up' || 'Down' || 'Left' || 'Right'):
+		#var is_moving = true
+		#If a movement key isn't pressed, nothing happens
+	else:
+
 		velocity= Vector2.ZERO
 			
 			
