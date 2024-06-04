@@ -14,11 +14,13 @@
 [node name="player1" type="Sprite2D" parent="."]
 position = Vector2(591, 344)
 texture = ExtResource("1_0w42w")
-script = ExtResource("2_qw4xq")
 
 [node name="Camera2D" type="Camera2D" parent="player1"]
 enabled = false
 script = ExtResource("3_tqshg")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="player1"]
+script = ExtResource("2_qw4xq")
 
 [node name="MainMenu" type="Node" parent="."]
 
