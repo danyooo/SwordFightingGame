@@ -11,12 +11,12 @@
 
 [node name="game" type="Node"]
 
-[node name="player" type="Sprite2D" parent="."]
+[node name="player1" type="Sprite2D" parent="."]
 position = Vector2(591, 344)
 texture = ExtResource("1_0w42w")
 script = ExtResource("2_qw4xq")
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D" type="Camera2D" parent="player1"]
 enabled = false
 script = ExtResource("3_tqshg")
 
@@ -48,3 +48,11 @@ script = ExtResource("7_yr0mw")
 
 [node name="Arena" type="StaticBody2D" parent="."]
 script = ExtResource("8_2t2kr")
+
+[node name="player2" type="Sprite2D" parent="."]
+position = Vector2(591, 344)
+texture = ExtResource("1_0w42w")
+
+[node name="Camera2D" type="Camera2D" parent="player2"]
+enabled = false
+script = ExtResource("3_tqshg")
