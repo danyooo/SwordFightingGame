@@ -1,8 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://drpmoq3lwnjwr"]
+[gd_scene load_steps=7 format=3 uid="uid://drpmoq3lwnjwr"]
 
-[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_vjnd8"]
-[ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="2_355cn"]
-[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="3_g5kru"]
 [ext_resource type="Script" path="res://Scripts/ControlsBtn.gd" id="4_0bv02"]
 [ext_resource type="Script" path="res://Scripts/PlayBtn.gd" id="5_feq7s"]
 [ext_resource type="Script" path="res://Scripts/HowToPlayBtn.gd" id="6_dxekd"]
@@ -11,15 +8,6 @@
 [ext_resource type="Script" path="res://Scripts/Sword.gd" id="9_dhvxc"]
 
 [node name="game" type="Node"]
-
-[node name="player1" type="Sprite2D" parent="."]
-position = Vector2(591, 344)
-texture = ExtResource("1_vjnd8")
-script = ExtResource("2_355cn")
-
-[node name="Camera2D" type="Camera2D" parent="player1"]
-enabled = false
-script = ExtResource("3_g5kru")
 
 [node name="MainMenu" type="Node" parent="."]
 
@@ -49,14 +37,6 @@ script = ExtResource("7_1o0e2")
 
 [node name="Arena" type="StaticBody2D" parent="."]
 script = ExtResource("8_bv1gu")
-
-[node name="player2" type="Sprite2D" parent="."]
-position = Vector2(591, 344)
-texture = ExtResource("1_vjnd8")
-
-[node name="Camera2D" type="Camera2D" parent="player2"]
-enabled = false
-script = ExtResource("3_g5kru")
 
 [node name="Sword" type="Sprite2D" parent="."]
 script = ExtResource("9_dhvxc")
