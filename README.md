@@ -63,7 +63,7 @@ Persistent storage -- Store valid dictionary words so the API doesn’t need to 
   * Swords grow in size depending on the word typed by the player(s) 
   * have proper physics, damage, mass, weight, etc behind them 
   * can collide with each other, players, and arena walls.
-*Player
+* Player
   * Player movement, health, and physics are in working order
   * Damaged by swords 
   * Store wins and words previously used
