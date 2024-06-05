@@ -34,13 +34,15 @@ func _physics_process(delta):
 var input = Vector2.ZERO
 # Detect which way the player is moving (in number format)
 func getinput():
+	# Use VECTOR2 to support Diagonal Movement
 	# x value inputs
 	# If "RIGHT" is pressed, bool returns 1. Subracted by "left" is zero. That means we're going right
 	# Otherwise, it'll equal -1, going left.
 	# Int makes "true" or "false" into a number
-	input.x = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
+	# Get strength is reserved by joysticks, because joysticks can't exactly be pressed left or right.
+	input.x =Input.get_axis("GPLeft","GPRight")
 	# y value inputs
-	input.y = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
+	input.y =Input.get_axis("GPUp","GPDown")
 	return input.normalized()
 
 func move(delta):
