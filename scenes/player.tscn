@@ -5,9 +5,16 @@
 
 [node name="Node" type="Node"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(591, 344)
 script = ExtResource("2_a6ba0")
 
-[node name="player1" type="Sprite2D" parent="CharacterBody2D"]
+[node name="player1" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_2titm")
+
+[node name="GamePadPlayer" type="CharacterBody2D" parent="Player"]
+position = Vector2(591, 344)
+script = ExtResource("2_a6ba0")
+
+[node name="player2" type="Sprite2D" parent="Player/GamePadPlayer"]
 texture = ExtResource("1_2titm")
