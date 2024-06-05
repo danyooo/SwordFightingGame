@@ -1,4 +1,5 @@
 extends CharacterBody2D
+
 # Player variables
 # Speed
 const Maxspeed = 500 # 500 default, this should change with swordsize

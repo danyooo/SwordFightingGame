@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwv1bqm7sbsqi"]
+
+[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_tiif4"]
+[ext_resource type="PackedScene" uid="uid://dagptqjm5qskh" path="res://scenes/player.tscn" id="2_rpvwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sug8y"]
+size = Vector2(122, 126)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qwlc8"]
+scenes/5/scene = ExtResource("2_rpvwu")
+
+[sub_resource type="TileSet" id="TileSet_8accm"]
+sources/5 = SubResource("TileSetScenesCollectionSource_qwlc8")
+
+[node name="TestingArea" type="Node2D"]
+
+[node name="Tester" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tester"]
+position = Vector2(594, 309)
+shape = SubResource("RectangleShape2D_sug8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tester"]
+position = Vector2(595, 309)
+texture = ExtResource("1_tiif4")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_8accm")
+format = 2
+layer_0/name = "player"
+layer_0/tile_data = PackedInt32Array(851955, 5, 327680)
+layer_1/name = "tester"
+layer_1/tile_data = PackedInt32Array()
