@@ -20,11 +20,12 @@ var DodgeTime = 10 # seconds. * SwordWeight?
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
 	move(delta)
-	
-#If <dodgekey> is pressed...
-
-	# Dodge! ( Snap the player forwards in the current direction they're moving in)
-	# This will depend on the sword the player is wielding. The larger and heavier it is, the less distance and higher cooldown.
+	DodgeTime -=1 # - 1 a second
+	#If the dodge button is pressed..
+	if Input.is_action_pressed("Dodge"):
+		# Dodge! ( Snap the player forwards in the current direction they're moving in)
+		# This will depend on the sword the player is wielding. The larger and heavier it is, the less distance and higher cooldown.
+		Dodge(DodgeTime, delta)
 #If <enemysword> touches player..
 	# How much momentum was the enemysword going by?
 	# What's the enemysword's damage stat? ( based on a swords weight/size)
@@ -64,5 +65,12 @@ func wordChoose():
 	# function that, while on the choosing worde scene, takes the players inputs into a list
 	# After taking them into a list, merge these into a single string to form a word.
 	# Pass this onto the word node.
-
+func Dodge(dodgetime, delta):
+	print("Dodge queued")
+	## If you can dodge
+	await get_tree().create_timer(dodgetime).timeout
+	# jump forwards
+	print("jumped!")
+	velocity += (input * delta)
+	# dodgetime
 
