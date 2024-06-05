@@ -3,7 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_2titm"]
 [ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="2_a6ba0"]
 
-[node name="player1" type="Sprite2D"]
+[node name="Node" type="Node"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(591, 344)
-texture = ExtResource("1_2titm")
 script = ExtResource("2_a6ba0")
+
+[node name="player1" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_2titm")
