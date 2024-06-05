@@ -7,11 +7,16 @@ const accel = 1800
 # friction; stopping power
 const friction = 400
 # Health variable
+var health = 100
 # Mass/Weight(?) For knockback when hit.
+var mass = 20
+var weight = 20
 # 'Wins' Variable
+var wins = 0
 # "UsedWords" List that stores the previously used valid word.
+var UsedWords = []
 # DodgeTimer variable. This will go up or down depending on the wielded swords weight/size.
-# Velocity ( to move the player)
+var DodgeTime = 10 # seconds. * SwordWeight?
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
 	move(delta)
