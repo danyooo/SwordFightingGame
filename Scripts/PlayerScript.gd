@@ -59,8 +59,10 @@ func move(delta):
 		velocity += (input * accel * delta)
 		velocity = velocity.limit_length(Maxspeed)
 	move_and_slide()
-# function that, while on the choosing worde scene, takes the players inputs into a list
-# After taking them into a list, merge these into a single string to form a word.
-# Pass this onto the word node.
+func wordChoose():
+	pass
+	# function that, while on the choosing worde scene, takes the players inputs into a list
+	# After taking them into a list, merge these into a single string to form a word.
+	# Pass this onto the word node.
 
 
