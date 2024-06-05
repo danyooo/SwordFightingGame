@@ -1,14 +1,21 @@
-extends Sprite2D
+extends RigidBody2D
 
+class_name sword
 
-
-#Sword Stat class here
+#Sword variables
 #Sword's Length
+var length = 0
 #Sword's Width
+var Width = 0
 #Sword's Weight Stat
+var Weight = 0
 #Sword's Durability Stat
+var Durability = 0
 #Sword momentum stat(0 default)
+var momentum = 0
 #Sword damage stat(0 default)
+var damage = 0
+
 
 #Sword's math for physics/momentum(if u can find any)
 
@@ -29,3 +36,7 @@ extends Sprite2D
 #Momentum increase as sword is swinging
 
 #Sword's weight increases damaage
+
+#Makes sword look at mouse
+func _physics_process(delta):
+	look_at(get_global_mouse_position())
