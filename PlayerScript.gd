@@ -1,11 +1,12 @@
 extends CharacterBody2D
 # Player variables
 # Speed
-const Maxspeed = 300
+const Maxspeed = 500 # 500 default, this should change with swordsize
 #acceleration
-const accel = 1500
-const friction = 600
-# Health varaible
+const accel = 1800
+# friction; stopping power
+const friction = 400
+# Health variable
 # Mass/Weight(?) For knockback when hit.
 # 'Wins' Variable
 # "UsedWords" List that stores the previously used valid word.
@@ -23,7 +24,7 @@ func _physics_process(delta):
 	# How much momentum was the enemysword going by?
 	# What's the enemysword's damage stat? ( based on a swords weight/size)
 	# Multiply momentum x damage and apply damage to health!
-	# Input is zero
+
 var input = Vector2.ZERO
 # Detect which way the player is moving (in number format)
 func getinput():
@@ -38,11 +39,8 @@ func getinput():
 
 func move(delta):
 	input = getinput()
-	## makes diagonal movement not go so fast (doesn't add left and up movement together to go faster, for example)
-	position += velocity.normalized() * Maxspeed * delta 
 	# If the player isn't pressing anything (stopped moving)
-	if(input == Vector2.ZERO):
-		print("player stopped pressing keys")
+	if input == Vector2.ZERO:
 		#apply friction!
 		if velocity.length() >(friction * delta):
 			# Decrease the players speed slowly
@@ -56,16 +54,6 @@ func move(delta):
 		velocity += (input * accel * delta)
 		velocity = velocity.limit_length(Maxspeed)
 	move_and_slide()
-
-#func applyfriction(amount):
-	#if velocity.length() > (amount):
-		#print("friction")
-		##normalized means it gets rid of speed, and only uses direction
-		#velocity -= velocity.normalized() * amount
-#func applymovement(amount):
-	#print("what's happenin")
-	#velocity += (amount)
-	#velocity = velocity.limit_length(Maxspeed)
 # function that, while on the choosing worde scene, takes the players inputs into a list
 # After taking them into a list, merge these into a single string to form a word.
 # Pass this onto the word node.
