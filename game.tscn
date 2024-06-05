@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://drpmoq3lwnjwr"]
 
-[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://icon.svg" id="1_0w42w"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="1_xtu5r"]
 [ext_resource type="Script" path="res://PlayerScript.gd" id="2_qw4xq"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="3_tqshg"]
 [ext_resource type="Script" path="res://ControlsBtn.gd" id="4_kyp34"]
@@ -13,12 +13,14 @@
 
 [node name="game" type="Node"]
 
-[node name="player" type="Sprite2D" parent="."]
+[node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(591, 344)
-texture = ExtResource("1_0w42w")
 script = ExtResource("2_qw4xq")
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="sprite" type="Sprite2D" parent="player"]
+texture = ExtResource("1_xtu5r")
+
+[node name="Camera2D" type="Camera2D" parent="player/sprite"]
 enabled = false
 script = ExtResource("3_tqshg")
 
