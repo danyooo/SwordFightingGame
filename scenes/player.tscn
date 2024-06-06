@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dagptqjm5qskh"]
+[gd_scene load_steps=6 format=3 uid="uid://dagptqjm5qskh"]
 
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_2titm"]
 [ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="2_a6ba0"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r2lwe"]
 size = Vector2(163, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6v7o"]
+size = Vector2(124, 127)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,6 +18,7 @@ offset_bottom = 40.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(591, 344)
+collision_mask = 12
 script = ExtResource("2_a6ba0")
 
 [node name="player1" type="Sprite2D" parent="CharacterBody2D"]
@@ -22,8 +26,9 @@ position = Vector2(-1, 4)
 texture = ExtResource("1_2titm")
 
 [node name="Sword" type="RigidBody2D" parent="CharacterBody2D"]
+position = Vector2(16, 0)
 collision_layer = 3
-collision_mask = 2
+collision_mask = 12
 script = ExtResource("3_paosm")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Sword"]
@@ -34,3 +39,7 @@ texture = ExtResource("1_2titm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Sword"]
 position = Vector2(145.5, 11.5)
 shape = SubResource("RectangleShape2D_r2lwe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, 4.5)
+shape = SubResource("RectangleShape2D_o6v7o")

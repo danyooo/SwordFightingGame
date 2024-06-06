@@ -46,3 +46,5 @@ Down={
 
 2d_physics/layer_1="Players"
 2d_physics/layer_2="Swords"
+2d_physics/layer_3="Enemy swords"
+2d_physics/layer_4="Other player"
