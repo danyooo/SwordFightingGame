@@ -5,9 +5,13 @@
 
 [node name="Node" type="Node"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player1" type="CharacterBody2D" parent="."]
 position = Vector2(591, 344)
 script = ExtResource("2_a6ba0")
 
-[node name="player1" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite" type="Sprite2D" parent="Player1"]
 texture = ExtResource("1_2titm")
+
+[node name="dodgecooldowntimer" type="Timer" parent="Player1"]
+
+[connection signal="timeout" from="Player1/dodgecooldowntimer" to="Player1" method="_on_dodgecooldowntimer_timeout"]
