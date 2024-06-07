@@ -19,7 +19,10 @@ var momentum = 0
 #Sword damage stat(0 default)
 var damage = 0
 
-
+# Calculate hitboxes
+func hitbox():
+	collision_layer = 2
+	collision_mask = 0
 #Sword's math for physics/momentum(if u can find any)
 
 #When letter typed, Sword Length/width++

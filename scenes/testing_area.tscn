@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwv1bqm7sbsqi"]
+[gd_scene load_steps=9 format=3 uid="uid://dwv1bqm7sbsqi"]
 
 [ext_resource type="Script" path="res://scenes/Tester.gd" id="1_sb6da"]
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_tiif4"]
 [ext_resource type="PackedScene" uid="uid://dagptqjm5qskh" path="res://scenes/player.tscn" id="2_rpvwu"]
+[ext_resource type="Script" path="res://scenes/Area2D.gd" id="3_6lyvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sug8y"]
 size = Vector2(164, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7bnq"]
+size = Vector2(175.5, 26)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qwlc8"]
 scenes/4/scene = ExtResource("2_rpvwu")
@@ -30,6 +34,16 @@ position = Vector2(573.5, 362.5)
 scale = Vector2(1.33594, 0.164062)
 texture = ExtResource("1_tiif4")
 
+[node name="Hurtbox?" type="Area2D" parent="Tester"]
+position = Vector2(-1, 1)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_6lyvd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tester/Hurtbox?"]
+position = Vector2(578.75, 362)
+shape = SubResource("RectangleShape2D_m7bnq")
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(284, 222)
 tile_set = SubResource("TileSet_8accm")
@@ -38,3 +52,5 @@ layer_0/name = "player"
 layer_0/tile_data = PackedInt32Array(851955, 5, 327680, -393251, 5, 65536, -327716, 5, 131072, -196641, 5, 196608, -34, 5, 262144)
 layer_1/name = "tester"
 layer_1/tile_data = PackedInt32Array()
+
+[connection signal="body_shape_entered" from="Tester/Hurtbox?" to="Tester/Hurtbox?" method="_on_body_shape_entered"]
