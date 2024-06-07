@@ -16,21 +16,25 @@ var wins = 0
 # "UsedWords" List that stores the previously used valid word.
 var UsedWords = []
 # DodgeTimer variable. This will go up or down depending on the wielded swords weight/size.
-var DodgeTime = 10 # seconds. * SwordWeight?
+var dodgecooldown = 3 #  10 seconds by default. * SwordWeight?
+# Dodge is available by default
+var dodgeready = true
+var dodgeDist = 20 # 20 default affected by swordWeight.
+# Add a new velocity just for dodging
+var dodgeVelocity: Vector2
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
 	move(delta)
-	DodgeTime -=1 # - 1 a second
-	#If the dodge button is pressed..
-	if Input.is_action_pressed("Dodge"):
-		# Dodge! ( Snap the player forwards in the current direction they're moving in)
+	
+	#If the dodge button is pressed AND the cooldown has expired..
+	if Input.is_action_pressed("Dodge") && dodgeready == true:
 		# This will depend on the sword the player is wielding. The larger and heavier it is, the less distance and higher cooldown.
-		Dodge(DodgeTime, delta)
-#If <enemysword> touches player..
-	# How much momentum was the enemysword going by?
-	# What's the enemysword's damage stat? ( based on a swords weight/size)
-	# Multiply momentum x damage and apply damage to health!
-
+		# Dodge!
+		Dodge(input,dodgeDist, delta)
+		# Dodge goes on cooldown
+		$dodgecooldowntimer.set_wait_time(dodgecooldown)
+		$dodgecooldowntimer.start()
+		dodgeready = false
 var input = Vector2.ZERO
 # Detect which way the player is moving (in number format)
 func getinput():
@@ -58,19 +62,30 @@ func move(delta):
 	else:
 		# Move in the direction the player wants to move
 		velocity += (input * accel * delta)
-		velocity = velocity.limit_length(Maxspeed)
+		# To dodge past max speed, add dodgevelocity ( so dodging isn't capped)
+		velocity = velocity.limit_length(Maxspeed) + dodgeVelocity
+		dodgeVelocity = Vector2.ZERO
 	move_and_slide()
 func wordChoose():
 	pass
 	# function that, while on the choosing worde scene, takes the players inputs into a list
 	# After taking them into a list, merge these into a single string to form a word.
 	# Pass this onto the word node.
-func Dodge(dodgetime, delta):
-	print("Dodge queued")
-	## If you can dodge
-	await get_tree().create_timer(dodgetime).timeout
+func Dodge(Pinput,distance, delta):
 	# jump forwards
-	print("jumped!")
-	velocity += (input * delta)
-	# dodgetime
+	print("Dodged!")
+	dodgeVelocity = ( Pinput * accel *  distance *  delta)
+#If <enemysword> touches player..
+	# How much momentum was the enemysword going by?
+	# What's the enemysword's damage stat? ( based on a swords weight/size)
+	# Multiply momentum x damage and apply damage to health!
 
+
+
+
+
+	#When the tiemr is done
+func _on_dodgecooldowntimer_timeout():
+	# Set dodge ready to true
+	print("Dodge Ready!")
+	dodgeready = true
