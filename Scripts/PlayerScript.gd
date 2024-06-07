@@ -87,5 +87,7 @@ func Dodge(Pinput,distance, delta):
 	#When the tiemr is done
 func _on_dodgecooldowntimer_timeout():
 	# Set dodge ready to true
-	print("Dodge Ready!")
+	print("Dodge Ready! for keyboard!")
 	dodgeready = true
+	# stop the timer
+	$dodgecooldowntimer.stop()

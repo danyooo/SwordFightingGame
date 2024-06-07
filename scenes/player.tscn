@@ -6,25 +6,24 @@
 
 [node name="Node" type="Node"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(591, 344)
-script = ExtResource("2_a6ba0")
-
 [node name="Player1" type="CharacterBody2D" parent="."]
-position = Vector2(591, 344)
+position = Vector2(723, 347)
 script = ExtResource("2_a6ba0")
 
 [node name="Sprite" type="Sprite2D" parent="Player1"]
+texture = ExtResource("1_2titm")
+
+[node name="dodgecooldowntimer" type="Timer" parent="Player1"]
 
 [node name="GamePadPlayer" type="CharacterBody2D" parent="."]
 position = Vector2(1182, 688)
 script = ExtResource("3_rdgg1")
 
 [node name="player2" type="Sprite2D" parent="GamePadPlayer"]
-position = Vector2(-320, -331)
-
+position = Vector2(-717, -326)
 texture = ExtResource("1_2titm")
 
-[node name="dodgecooldowntimer" type="Timer" parent="Player1"]
+[node name="dodgecooldowntimer2" type="Timer" parent="GamePadPlayer"]
 
 [connection signal="timeout" from="Player1/dodgecooldowntimer" to="Player1" method="_on_dodgecooldowntimer_timeout"]
+[connection signal="timeout" from="GamePadPlayer/dodgecooldowntimer2" to="GamePadPlayer" method="_on_dodgecooldowntimer_2_timeout"]
