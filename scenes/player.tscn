@@ -1,15 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://dagptqjm5qskh"]
+[gd_scene load_steps=4 format=3 uid="uid://dagptqjm5qskh"]
 
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_2titm"]
 [ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="2_a6ba0"]
+[ext_resource type="Script" path="res://Scripts/GamePadPlayer.gd" id="3_rdgg1"]
 
 [node name="Node" type="Node"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(591, 344)
+script = ExtResource("2_a6ba0")
 
 [node name="Player1" type="CharacterBody2D" parent="."]
 position = Vector2(591, 344)
 script = ExtResource("2_a6ba0")
 
 [node name="Sprite" type="Sprite2D" parent="Player1"]
+
+[node name="GamePadPlayer" type="CharacterBody2D" parent="."]
+position = Vector2(1182, 688)
+script = ExtResource("3_rdgg1")
+
+[node name="player2" type="Sprite2D" parent="GamePadPlayer"]
+position = Vector2(-320, -331)
+
 texture = ExtResource("1_2titm")
 
 [node name="dodgecooldowntimer" type="Timer" parent="Player1"]
