@@ -1,7 +1,10 @@
 extends Area2D
-var health = 100
+var health := 100;
 
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	health - 100
-	
+	if body_entered:
+		health = health - 99
+		print(health)
+		if health < 1:
+				print("game over")
