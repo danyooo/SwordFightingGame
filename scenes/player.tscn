@@ -1,95 +1,40 @@
-[gd_scene load_steps=10 format=3 uid="uid://dagptqjm5qskh"]
+[gd_scene load_steps=5 format=3 uid="uid://dvkrqse3mj8bf"]
 
-[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_2titm"]
-[ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="2_a6ba0"]
-[ext_resource type="Texture2D" path="res://Assets/manz.png" id="2_fjhh7"]
-[ext_resource type="Script" path="res://Scripts/GamePadPlayer.gd" id="3_rdgg1"]
+[ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="1_oc2sy"]
+[ext_resource type="Texture2D" uid="uid://b6qcdkd1hujqn" path="res://Assets/manz.png" id="2_m1c8t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xy53r"]
-radius = 66.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8c24s"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i47ff"]
 radius = 64.0078
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5dotg"]
-radius = 64.0078
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vgypy"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_itxd4"]
 radius = 66.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_36tha"]
-size = Vector2(138, 133)
-
-[node name="Node" type="Node"]
-
-[node name="Player1" type="CharacterBody2D" parent="."]
+[node name="Player1" type="CharacterBody2D"]
 position = Vector2(723, 347)
 collision_mask = 31
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 0.0
 safe_margin = 1.0
-script = ExtResource("2_a6ba0")
+script = ExtResource("1_oc2sy")
 
-[node name="Sprite" type="Sprite2D" parent="Player1"]
-texture = ExtResource("2_fjhh7")
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_m1c8t")
 
-[node name="dodgecooldowntimer" type="Timer" parent="Player1"]
+[node name="dodgecooldowntimer" type="Timer" parent="."]
 
-[node name="CollisionDetector" type="Area2D" parent="Player1"]
-collision_mask = 15
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player1/CollisionDetector"]
-shape = SubResource("CircleShape2D_xy53r")
+[node name="CollShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i47ff")
 one_way_collision_margin = 1.5
 debug_color = Color(0.716927, 0.449748, 0.472518, 0.42)
 
-[node name="CollShape" type="CollisionShape2D" parent="Player1"]
-shape = SubResource("CircleShape2D_8c24s")
+[node name="CollisionDetector" type="Area2D" parent="."]
+collision_mask = 15
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionDetector"]
+shape = SubResource("CircleShape2D_itxd4")
 one_way_collision_margin = 1.5
 debug_color = Color(0.716927, 0.449748, 0.472518, 0.42)
 
-[node name="GamePadPlayer" type="CharacterBody2D" parent="."]
-position = Vector2(476, 333)
-collision_mask = 31
-motion_mode = 1
-wall_min_slide_angle = 0.0
-safe_margin = 1.0
-script = ExtResource("3_rdgg1")
-
-[node name="player2" type="Sprite2D" parent="GamePadPlayer"]
-texture = ExtResource("2_fjhh7")
-
-[node name="dodgecooldowntimer2" type="Timer" parent="GamePadPlayer"]
-
-[node name="CollShape" type="CollisionShape2D" parent="GamePadPlayer"]
-shape = SubResource("CircleShape2D_5dotg")
-one_way_collision_margin = 1.5
-debug_color = Color(2.16588e-06, 0.621176, 0.55646, 0.42)
-
-[node name="CollisionDetector" type="Area2D" parent="GamePadPlayer"]
-collision_mask = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GamePadPlayer/CollisionDetector"]
-shape = SubResource("CircleShape2D_vgypy")
-one_way_collision_margin = 1.5
-debug_color = Color(2.16588e-06, 0.621176, 0.55646, 0.42)
-
-[node name="wall" type="StaticBody2D" parent="."]
-position = Vector2(215, 264)
-disable_mode = 1
-collision_layer = 16
-collision_mask = 31
-
-[node name="Sprite2D" type="Sprite2D" parent="wall"]
-texture = ExtResource("1_2titm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
-position = Vector2(-1, -2.5)
-shape = SubResource("RectangleShape2D_36tha")
-
-[connection signal="timeout" from="Player1/dodgecooldowntimer" to="Player1" method="_on_dodgecooldowntimer_timeout"]
-[connection signal="area_entered" from="Player1/CollisionDetector" to="Player1" method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="GamePadPlayer/dodgecooldowntimer2" to="GamePadPlayer" method="_on_dodgecooldowntimer_2_timeout"]
-[connection signal="area_entered" from="GamePadPlayer/CollisionDetector" to="GamePadPlayer" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="GamePadPlayer/CollisionDetector" to="GamePadPlayer" method="_on_collision_detector_area_exited"]
+[connection signal="timeout" from="dodgecooldowntimer" to="." method="_on_dodgecooldowntimer_timeout"]
+[connection signal="area_entered" from="CollisionDetector" to="." method="_on_area_2d_area_entered"]
