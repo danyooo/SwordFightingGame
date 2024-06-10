@@ -24,7 +24,7 @@ var dodgeDist = 20 # 20 default affected by swordWeight.
 var dodgeVelocity: Vector2
 # Collision variable
 var being_collided:bool
-# Knockback cooldown
+# Knockback variable. added this so that the players dont both knock each other back at the same time
 var knockback = Vector2.ZERO
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
@@ -35,18 +35,11 @@ func _physics_process(delta):
 		# What did you collide with?
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
-			#print("Collided with: ", collision.get_collider().name)
 			# How fast was the collider moving?
 			collision.get_collider_velocity() # Get the colliders velocity
-			#print("Collider velocity is.. ", collision.get_collider_velocity())
-			# Get pushed back (within the bounds of max speed)
+			# Get pushed back 
 			knockback = collision.get_collider_velocity()
-			velocity = knockback
-			#velocity.limit_length(Maxspeed)
-			#velocity += collision.get_collider_velocity()
-		# grab the colliders velocity
-		#get_collider_velocity()
-		#print(collision.get_collider_velocity()
+			velocity = knockback * input
 
 
 	#If the dodge button is pressed AND the cooldown has expired..

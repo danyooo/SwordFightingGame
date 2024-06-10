@@ -23,7 +23,7 @@ var dodgeDist = 20 # 20 default affected by swordWeight.
 var dodgeVelocity: Vector2
 # collision variable
 var being_collided :bool
-#knockback cooldown
+#knockback variable. added this so that the players dont both knock each other back at the same time
 var knockback = Vector2.ZERO
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
