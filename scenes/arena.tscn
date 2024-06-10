@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://cjlt52x552as5"]
+[gd_scene load_steps=3 format=3 uid="uid://cjlt52x552as5"]
+
+[ext_resource type="PackedScene" uid="uid://dvkrqse3mj8bf" path="res://scenes/player.tscn" id="1_sva22"]
+[ext_resource type="PackedScene" uid="uid://dyfg34pg83xpy" path="res://scenes/gamepadplayer.tscn" id="2_wqja0"]
 
 [node name="Arena" type="Node2D"]
+
+[node name="GamePadPlayer" parent="." instance=ExtResource("2_wqja0")]
+position = Vector2(409, 333)
+
+[node name="Player1" parent="." instance=ExtResource("1_sva22")]
