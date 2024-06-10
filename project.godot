@@ -72,3 +72,11 @@ GPDodge={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Player2"
+2d_render/layer_3="Sword"
+2d_render/layer_4="EnemSword"
+2d_render/layer_5="Wall"
