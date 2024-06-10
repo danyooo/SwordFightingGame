@@ -21,8 +21,28 @@ var dodgeready = true
 var dodgeDist = 20 # 20 default affected by swordWeight.
 # Add a new velocity just for dodging
 var dodgeVelocity: Vector2
+# collision variable
+var being_collided :bool
+#knockback cooldown
+var knockback = Vector2.ZERO
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
+	var knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
+	#if a collision occurs
+	if being_collided == true:
+		# What did you collide with?
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			print("Collided with: ", collision.get_collider().name)
+			# How fast was the collider moving?
+			collision.get_collider_velocity() # Get the colliders velocity
+			print("Collider velocity is.. ", collision.get_collider_velocity())
+			# Get pushed back (within the bounds of max speed)
+			knockback = collision.get_collider_velocity()
+			velocity = knockback
+			
+			#velocity.limit_length(Maxspeed)
+			#velocity += collision.get_collider_velocity()
 	move(delta)
 	#If the dodge button is pressed..
 	if Input.is_action_pressed("GPDodge") && dodgeready == true:
@@ -84,3 +104,13 @@ func _on_dodgecooldowntimer_2_timeout():
 	print("Dodge Ready! for GamePad!")
 	dodgeready = true
 	$dodgecooldowntimer2.stop()
+
+
+
+func _on_area_2d_area_entered(area):
+	being_collided = true
+	print("Player 2 collission!")
+
+
+func _on_collision_detector_area_exited(area):
+	being_collided = false

@@ -22,11 +22,35 @@ var dodgeready = true
 var dodgeDist = 20 # 20 default affected by swordWeight.
 # Add a new velocity just for dodging
 var dodgeVelocity: Vector2
+# Collision variable
+var being_collided:bool
+# Knockback cooldown
+var knockback = Vector2.ZERO
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
+	var knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
 	move(delta)
-	
+	#if a collision occurs
+	if being_collided == true:
+		# What did you collide with?
+		for i in get_slide_collision_count():
+			var collision = get_slide_collision(i)
+			#print("Collided with: ", collision.get_collider().name)
+			# How fast was the collider moving?
+			collision.get_collider_velocity() # Get the colliders velocity
+			#print("Collider velocity is.. ", collision.get_collider_velocity())
+			# Get pushed back (within the bounds of max speed)
+			knockback = collision.get_collider_velocity()
+			velocity = knockback
+			#velocity.limit_length(Maxspeed)
+			#velocity += collision.get_collider_velocity()
+		# grab the colliders velocity
+		#get_collider_velocity()
+		#print(collision.get_collider_velocity()
+
+
 	#If the dodge button is pressed AND the cooldown has expired..
+	
 	if Input.is_action_pressed("Dodge") && dodgeready == true:
 		# This will depend on the sword the player is wielding. The larger and heavier it is, the less distance and higher cooldown.
 		# Dodge!
@@ -35,6 +59,8 @@ func _physics_process(delta):
 		$dodgecooldowntimer.set_wait_time(dodgecooldown)
 		$dodgecooldowntimer.start()
 		dodgeready = false
+
+
 var input = Vector2.ZERO
 # Detect which way the player is moving (in number format)
 func getinput():
@@ -91,3 +117,12 @@ func _on_dodgecooldowntimer_timeout():
 	dodgeready = true
 	# stop the timer
 	$dodgecooldowntimer.stop()
+
+# on collisison
+func _on_area_2d_area_entered(area):
+	print("player 1 collission!")
+	being_collided = true
+
+func _on_area_2d_area_exited(area):
+	print("no collissions for P1")
+	var being_collided = false
