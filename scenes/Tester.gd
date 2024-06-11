@@ -2,18 +2,9 @@ class_name TesterHurtbox
 extends RigidBody2D
 
 
+var EnemyHurtboxy = EnemyHurtbox.new()
 
-func hurty():
-	collision_layer = 0
-	collision_mask = 2
-	
-	
-func _healthy():
-	var health = 100
-	print(health)
-
-
-	
-
-
-
+func clear():
+	if EnemyHurtboxy.clearcheck == true:
+		print("a")
+		queue_free()

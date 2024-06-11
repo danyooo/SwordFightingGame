@@ -45,4 +45,13 @@ func hitbox():
 
 #Makes sword look at mouse
 func _process(delta):
-	rotate(get_angle_to(get_global_mouse_position()))
+	# gets Mouse position to mousepos variable
+	var mousepos = get_angle_to(get_global_mouse_position())
+	#get vector from sword to cursor using linear interpolation
+	var vector =  mousepos - global_position
+	#get angle of vector
+	var angle = vector.angle()
+
+	var rotation = global_rotation
+	#set sword rotation
+	global_rotation = lerp(rotation, angle, .02)

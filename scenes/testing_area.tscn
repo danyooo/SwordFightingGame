@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwv1bqm7sbsqi"]
+[gd_scene load_steps=10 format=3 uid="uid://dwv1bqm7sbsqi"]
 
 [ext_resource type="Script" path="res://scenes/Tester.gd" id="1_sb6da"]
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_tiif4"]
 [ext_resource type="PackedScene" uid="uid://dagptqjm5qskh" path="res://scenes/player.tscn" id="2_rpvwu"]
 [ext_resource type="Script" path="res://scenes/Area2D.gd" id="3_6lyvd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s34i1"]
+size = Vector2(125, 134.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sug8y"]
 size = Vector2(164, 21)
@@ -19,29 +22,41 @@ sources/5 = SubResource("TileSetScenesCollectionSource_qwlc8")
 
 [node name="TestingArea" type="Node2D"]
 
-[node name="Tester" type="RigidBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 8
+collision_mask = 11
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(728, 363)
+texture = ExtResource("1_tiif4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(729.5, 365.25)
+shape = SubResource("RectangleShape2D_s34i1")
+
+[node name="Sword" type="RigidBody2D" parent="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource("1_sb6da")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tester"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Sword"]
 position = Vector2(573, 361.5)
 shape = SubResource("RectangleShape2D_sug8y")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tester"]
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Sword"]
 position = Vector2(573.5, 362.5)
 scale = Vector2(1.33594, 0.164062)
 texture = ExtResource("1_tiif4")
 
-[node name="Hurtbox?" type="Area2D" parent="Tester"]
+[node name="Hurtbox?" type="Area2D" parent="CharacterBody2D/Sword"]
 position = Vector2(-1, 1)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_6lyvd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tester/Hurtbox?"]
-position = Vector2(578.75, 362)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Sword/Hurtbox?"]
+position = Vector2(574, 359)
 shape = SubResource("RectangleShape2D_m7bnq")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -53,4 +68,4 @@ layer_0/tile_data = PackedInt32Array(851955, 5, 327680, -393251, 5, 65536, -3277
 layer_1/name = "tester"
 layer_1/tile_data = PackedInt32Array()
 
-[connection signal="body_shape_entered" from="Tester/Hurtbox?" to="Tester/Hurtbox?" method="_on_body_shape_entered"]
+[connection signal="body_shape_entered" from="CharacterBody2D/Sword/Hurtbox?" to="CharacterBody2D/Sword/Hurtbox?" method="_on_body_shape_entered"]
