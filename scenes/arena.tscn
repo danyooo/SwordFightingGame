@@ -5,6 +5,8 @@
 
 [node name="Arena" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="GamePadPlayer" parent="." instance=ExtResource("2_wqja0")]
 position = Vector2(409, 333)
 

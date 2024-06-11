@@ -1,4 +1,6 @@
 extends CharacterBody2D
+# Export the character's file for use in other scripts
+@export_file() var GamePadPlayer
 # Player variables
 # Speed
 const Maxspeed = 500 # 500 default, this should change with swordsize
