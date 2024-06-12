@@ -1,6 +1,7 @@
-class_name EnemyHurtbox
+
 extends Area2D
-var health := 100;
+class_name EnemyHurtbox
+var health = 100
 var clearcheck = false
 #Detects if something collided with the tester's body
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
@@ -15,3 +16,4 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 				print("game over")
 				var clearcheck = true
 				print(clearcheck)
+			
