@@ -15,10 +15,10 @@ func _physics_process(delta):
 	# zooming
 	zoom.x = clamp( 1 / Player1.position.distance_to(GamePadPlayer.position) * 1000,minzoom, maxzoom) 
 	zoom.y = zoom.x
-	print("zoom ", zoom.x)
+	#print("zoom ", zoom.x)
 
 	var zoomval = Vector2(zoom.x,zoom.y)
-	print("zoomval ", zoomval)
+	#print("zoomval ", zoomval)
 	zoom = (zoomval)
 
 
