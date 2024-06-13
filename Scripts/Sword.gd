@@ -1,5 +1,4 @@
-extends Area2D
-class_name EnemyHurtbox
+extends RigidBody2D
 #Sword Stats
 #Sword's Length (Changes with WordTyped by player)
 #Sword's Width(Changes with WordTyped by player)
