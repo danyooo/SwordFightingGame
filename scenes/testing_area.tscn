@@ -34,27 +34,24 @@ position = Vector2(729.5, 365.25)
 shape = SubResource("RectangleShape2D_s34i1")
 
 [node name="Sword" type="RigidBody2D" parent="CharacterBody2D"]
+position = Vector2(577, 364)
 collision_layer = 4
 collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource("2_h4p73")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Sword"]
-position = Vector2(573, 361.5)
 shape = SubResource("RectangleShape2D_sug8y")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Sword"]
-position = Vector2(573.5, 362.5)
 scale = Vector2(1.33594, 0.164062)
 texture = ExtResource("1_tiif4")
 
 [node name="Hurtbox?" type="Area2D" parent="CharacterBody2D/Sword"]
-position = Vector2(-1, 1)
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Sword/Hurtbox?"]
-position = Vector2(574, 359)
 shape = SubResource("RectangleShape2D_m7bnq")
 
 [node name="TileMap" type="TileMap" parent="."]

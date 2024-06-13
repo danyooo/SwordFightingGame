@@ -8,13 +8,14 @@ extends RigidBody2D
 #Sword momentum stat(0 default) increasees as the sword is swung (But negatively multiplied by the swords size?
 #Sword damage stat(0 default) Scales with size of sword
 var durability = 100
+# variable to set whether or not sword is visible or not
 var clearcheck = false
-
+# Equivalent of "Draw Function"
 #Detects if something collided with something
-func _on_hurtbox_area_entered(area):
-	var body_entered = true
+var collided = false
+func _physics_process(delta):
 	#If collided;
-	if body_entered:
+	if collided == true:
 		#Subtract durability
 		durability = durability - 99
 		print(durability)
@@ -45,4 +46,7 @@ func _on_hurtbox_area_entered(area):
 # Detection for amount of momentum behind enemy sword when hitting player's sword, deals certain amount of damage	
 	#Detection for setting Sword's durability lower when hit
 
+func _on_hurtbox_area_entered(area):
+	print("HEEE")
+	collided = true
 
