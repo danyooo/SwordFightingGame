@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwv1bqm7sbsqi"]
+[gd_scene load_steps=9 format=3 uid="uid://dwv1bqm7sbsqi"]
 
 [ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_tiif4"]
 [ext_resource type="Script" path="res://Scripts/Sword.gd" id="2_h4p73"]
 [ext_resource type="PackedScene" uid="uid://dagptqjm5qskh" path="res://scenes/player.tscn" id="2_rpvwu"]
-[ext_resource type="Script" path="res://Scripts/Area2D.gd" id="3_6lyvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s34i1"]
 size = Vector2(125, 134.5)
@@ -53,7 +52,6 @@ texture = ExtResource("1_tiif4")
 position = Vector2(-1, 1)
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("3_6lyvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Sword/Hurtbox?"]
 position = Vector2(574, 359)
@@ -68,4 +66,4 @@ layer_0/tile_data = PackedInt32Array(851955, 5, 327680, -393251, 5, 65536, -3277
 layer_1/name = "tester"
 layer_1/tile_data = PackedInt32Array()
 
-[connection signal="body_shape_entered" from="CharacterBody2D/Sword/Hurtbox?" to="CharacterBody2D/Sword/Hurtbox?" method="_on_body_shape_entered"]
+[connection signal="area_entered" from="CharacterBody2D/Sword/Hurtbox?" to="CharacterBody2D/Sword" method="_on_hurtbox_area_entered"]
