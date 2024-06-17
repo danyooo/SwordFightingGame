@@ -80,3 +80,5 @@ GPDodge={
 2d_render/layer_3="Sword"
 2d_render/layer_4="EnemSword"
 2d_render/layer_5="Wall"
+2d_physics/layer_1="Players"
+2d_physics/layer_2="Swords"

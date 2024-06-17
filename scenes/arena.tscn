@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjlt52x552as5"]
+[gd_scene load_steps=5 format=3 uid="uid://cjlt52x552as5"]
 
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="1_bqpap"]
 [ext_resource type="PackedScene" uid="uid://dvkrqse3mj8bf" path="res://scenes/player.tscn" id="1_sva22"]
 [ext_resource type="PackedScene" uid="uid://dyfg34pg83xpy" path="res://scenes/gamepadplayer.tscn" id="2_wqja0"]
+[ext_resource type="PackedScene" uid="uid://cybhs5pbg643g" path="res://scenes/Sword.tscn" id="4_04h03"]
 
 [node name="Arena" type="Node2D"]
 
@@ -19,4 +20,11 @@ position = Vector2(409, 333)
 GamePadPlayer = "<null>"
 
 [node name="Player1" parent="." instance=ExtResource("1_sva22")]
+position = Vector2(718, 343)
+collision_mask = 12
 Player1 = "<null>"
+
+[node name="Sword" parent="Player1" instance=ExtResource("4_04h03")]
+position = Vector2(77, 2)
+collision_layer = 3
+collision_mask = 0
