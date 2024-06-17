@@ -14,6 +14,12 @@ config/name="S(word) Fighting Game"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -80,5 +86,8 @@ GPDodge={
 2d_render/layer_3="Sword"
 2d_render/layer_4="EnemSword"
 2d_render/layer_5="Wall"
-2d_physics/layer_1="Players"
-2d_physics/layer_2="Swords"
+2d_physics/layer_1="Player1"
+2d_physics/layer_2="Player1Sword"
+2d_physics/layer_3="GamePadPlayer"
+2d_physics/layer_4="GamePadSword"
+2d_physics/layer_5="Wall"

@@ -21,10 +21,10 @@ GamePadPlayer = "<null>"
 
 [node name="Player1" parent="." instance=ExtResource("1_sva22")]
 position = Vector2(718, 343)
-collision_mask = 12
+collision_mask = 28
 Player1 = "<null>"
 
 [node name="Sword" parent="Player1" instance=ExtResource("4_04h03")]
-position = Vector2(77, 2)
-collision_layer = 3
-collision_mask = 0
+position = Vector2(0, 0)
+collision_layer = 2
+collision_mask = 12

@@ -18,13 +18,15 @@ var clearcheck = false
 var collided = false
 func _process(delta):
 	# Look at mousePointer
-	look_at (get_global_mouse_position())
+	# Maybe have a mouse_x and mouse_y pos and apply force based on that?
+	apply_force(get_global_mouse_position()) 
 func _physics_process(delta):
 	#If collided;
 	if collided == true:
 		#Subtract durability
 		durability = durability - 99
 		print(durability)
+		print("collided with ",get_colliding_bodies())
 		print(clearcheck)
 		#If health is less then 1, print game over
 		if durability < 1:
@@ -56,3 +58,7 @@ func _physics_process(delta):
 func _on_hitbox_area_entered(area):
 	print("HEEE")
 	collided = true
+
+
+func _on_hit_box_area_exited(area):
+	collided = false
