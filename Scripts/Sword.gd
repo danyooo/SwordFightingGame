@@ -23,14 +23,14 @@ func _physics_process(delta):
 	#If collided;
 	if collided == true:
 		#Subtract durability
-		durability = durability - 99
+		durability = durability - 1
 		print(durability)
-		print(clearcheck)
+		
 		#If health is less then 1, print game over
 		if durability < 1:
 				print("game over")
-				var clearcheck = true
-				print(clearcheck)
+				queue_free()
+				
 				
 
 # This should pass along its mass/weight to the player in order to change the player's dash cooldown/distance to be more realistic.
@@ -56,3 +56,7 @@ func _physics_process(delta):
 func _on_hitbox_area_entered(area):
 	print("HEEE")
 	collided = true
+
+
+func _on_hit_box_area_exited(area):
+	collided = false

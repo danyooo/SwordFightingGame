@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjploy3irfxc4"]
+
+[ext_resource type="Texture2D" uid="uid://by3f30llywj1j" path="res://Assets/ToBEROMVOED.png" id="1_v0ee7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5ent"]
+size = Vector2(131, 134)
+
+[node name="Wall" type="StaticBody2D"]
+position = Vector2(396, 164)
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(67, 64)
+texture = ExtResource("1_v0ee7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64.5, 65)
+shape = SubResource("RectangleShape2D_u5ent")

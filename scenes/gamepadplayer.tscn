@@ -28,7 +28,8 @@ one_way_collision_margin = 1.5
 debug_color = Color(2.16588e-06, 0.621176, 0.55646, 0.42)
 
 [node name="CollisionDetector" type="Area2D" parent="."]
-collision_mask = 15
+collision_layer = 4
+collision_mask = 19
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetector"]
 shape = SubResource("CircleShape2D_2t2sn")
