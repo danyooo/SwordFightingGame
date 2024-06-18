@@ -1,9 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://dagptqjm5qskh"]
+[gd_scene load_steps=5 format=3 uid="uid://dvkrqse3mj8bf"]
 
-[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_2titm"]
-[ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="2_a6ba0"]
+[ext_resource type="Script" path="res://Scripts/PlayerScript.gd" id="1_oc2sy"]
+[ext_resource type="Texture2D" uid="uid://b6qcdkd1hujqn" path="res://Assets/manz.png" id="2_m1c8t"]
 
-[node name="player1" type="Sprite2D"]
-position = Vector2(591, 344)
-texture = ExtResource("1_2titm")
-script = ExtResource("2_a6ba0")
+[sub_resource type="CircleShape2D" id="CircleShape2D_i47ff"]
+radius = 64.0078
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itxd4"]
+radius = 66.0
+
+[node name="Player1" type="CharacterBody2D"]
+position = Vector2(723, 347)
+collision_mask = 31
+motion_mode = 1
+slide_on_ceiling = false
+wall_min_slide_angle = 0.0
+safe_margin = 1.0
+script = ExtResource("1_oc2sy")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_m1c8t")
+
+[node name="dodgecooldowntimer" type="Timer" parent="."]
+
+[node name="CollShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i47ff")
+one_way_collision_margin = 1.5
+debug_color = Color(0.716927, 0.449748, 0.472518, 0.42)
+
+[node name="CollisionDetector" type="Area2D" parent="."]
+collision_mask = 15
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionDetector"]
+shape = SubResource("CircleShape2D_itxd4")
+one_way_collision_margin = 1.5
+debug_color = Color(0.716927, 0.449748, 0.472518, 0.42)
+
+[connection signal="timeout" from="dodgecooldowntimer" to="." method="_on_dodgecooldowntimer_timeout"]
+[connection signal="area_entered" from="CollisionDetector" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CollisionDetector" to="." method="_on_collision_detector_area_exited"]

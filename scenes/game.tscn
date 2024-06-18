@@ -1,21 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://drpmoq3lwnjwr"]
+[gd_scene load_steps=10 format=3 uid="uid://drpmoq3lwnjwr"]
 
 [ext_resource type="Script" path="res://Scripts/ControlsBtn.gd" id="4_0bv02"]
 [ext_resource type="Script" path="res://Scripts/PlayBtn.gd" id="5_feq7s"]
+[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="6_0wa6r"]
 [ext_resource type="Script" path="res://Scripts/HowToPlayBtn.gd" id="6_dxekd"]
 [ext_resource type="Script" path="res://Scripts/Word.gd" id="7_1o0e2"]
+[ext_resource type="PackedScene" uid="uid://dyfg34pg83xpy" path="res://scenes/gamepadplayer.tscn" id="7_w0tb8"]
 [ext_resource type="Script" path="res://Scripts/Arena.gd" id="8_bv1gu"]
-[ext_resource type="Script" path="res://Scripts/Sword.gd" id="9_dhvxc"]
+[ext_resource type="PackedScene" uid="uid://dvkrqse3mj8bf" path="res://scenes/player.tscn" id="8_qyabh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abhh6"]
+size = Vector2(138, 133)
 
 [node name="game" type="Node"]
+
+[node name="Player1" parent="." instance=ExtResource("8_qyabh")]
+
+[node name="GamePadPlayer" parent="." instance=ExtResource("7_w0tb8")]
+position = Vector2(458, 334)
 
 [node name="MainMenu" type="Node" parent="."]
 
 [node name="ControlsBtn" type="Button" parent="MainMenu"]
-offset_left = 1182.0
-offset_top = 688.0
-offset_right = 1190.0
-offset_bottom = 696.0
+offset_left = 441.0
+offset_top = 342.0
+offset_right = 449.0
+offset_bottom = 350.0
 script = ExtResource("4_0bv02")
 
 [node name="PlayBtn" type="Button" parent="MainMenu"]
@@ -38,5 +48,15 @@ script = ExtResource("7_1o0e2")
 [node name="Arena" type="StaticBody2D" parent="."]
 script = ExtResource("8_bv1gu")
 
-[node name="Sword" type="Sprite2D" parent="."]
-script = ExtResource("9_dhvxc")
+[node name="wall" type="StaticBody2D" parent="."]
+position = Vector2(215, 264)
+disable_mode = 1
+collision_layer = 16
+collision_mask = 31
+
+[node name="Sprite2D" type="Sprite2D" parent="wall"]
+texture = ExtResource("6_0wa6r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_abhh6")
