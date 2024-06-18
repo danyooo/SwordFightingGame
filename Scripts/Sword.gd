@@ -21,10 +21,9 @@ var mouseVel : Vector2
 func _process(delta):
 	# Event to grab mouses velocity
 	_input(InputEventMouse)
-	print("MouseVelocity ", mouseVel)
 	
 func _physics_process(delta):
-# applies the rotation
+# applies the rotational force from MouseVelocity
 	apply_torque(mouseVel.x * 100) 
 	apply_torque(mouseVel.y * 100) 
 	#If collided;
@@ -74,3 +73,6 @@ func _on_hit_box_area_exited(area):
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouseVel = event.get_velocity()
+		print("MouseVelocity ", mouseVel)
+	else:
+		mouseVel = Vector2.ZERO
