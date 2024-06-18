@@ -1,3 +1,4 @@
+
 # SwordFightingGame(Temporary Title)
 
 ## <ins>**Collaborators:**</ins>
@@ -71,22 +72,5 @@ Persistent storage -- Store valid dictionary words so the API doesn’t need to 
 
 
 
-
-
-
-
-
-
-
--Use player inputs to move the character(1 day)
--Swords have hitboxes and can hit each other(~2 days)
--Typing correctly sets sword length(1 day)
--Swords have physics(mass, weight, a ‘force’ behind it.) [~3 days]
--Swords upon hitting each other react accordingly (Lose durability, apply knockback to opponent depending on mass) (1~2 days)
--Words previously typed cannot be typed again( 1 day)
-- Timer that counts down, and upon reaching zero, ends the round (1 day)
-- Point system ( 1 day)
--Request valid words from dictionary API(~1 day)
--Read and write valid words from API to storage (~1-2 days)
 
 
