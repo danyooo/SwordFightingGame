@@ -16,14 +16,17 @@ var clearcheck = false
 # Equivalent of "Draw Function"
 #Detects if something collided with something
 var collided = false
+# var for storing mouse velocity
+var mouseVel : Vector2
 func _process(delta):
-	pass
-	# Look at mousePointer
-	# Maybe have a mouse_x and mouse_y pos and apply force based on that?
-var mouse_x = get_global_mouse_position().x
-var mouse_y = get_global_mouse_position().y
+	# Event to grab mouses velocity
+	_input(InputEventMouse)
+	print("MouseVelocity ", mouseVel)
+	
 func _physics_process(delta):
-	apply_torque(1021001) # applies the rotation
+# applies the rotation
+	apply_torque(mouseVel.x * 100) 
+	apply_torque(mouseVel.y * 100) 
 	#If collided;
 	if collided == true:
 		#Subtract durability
@@ -57,7 +60,6 @@ func _physics_process(delta):
 #Collision check  on other swords, players, arena.
 # Detection for amount of momentum behind enemy sword when hitting player's sword, deals certain amount of damage	
 	#Detection for setting Sword's durability lower when hit
-
 func _on_hitbox_area_entered(area):
 	print("HEEE")
 	collided = true
@@ -65,3 +67,10 @@ func _on_hitbox_area_entered(area):
 
 func _on_hit_box_area_exited(area):
 	collided = false
+
+
+
+# func to grab mouse velocity
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouseVel = event.get_velocity()
