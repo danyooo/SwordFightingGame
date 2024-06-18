@@ -17,10 +17,13 @@ var clearcheck = false
 #Detects if something collided with something
 var collided = false
 func _process(delta):
+	pass
 	# Look at mousePointer
 	# Maybe have a mouse_x and mouse_y pos and apply force based on that?
-	apply_force(get_global_mouse_position()) 
+var mouse_x = get_global_mouse_position().x
+var mouse_y = get_global_mouse_position().y
 func _physics_process(delta):
+	apply_torque(1021001) # applies the rotation
 	#If collided;
 	if collided == true:
 		#Subtract durability

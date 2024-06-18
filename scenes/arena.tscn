@@ -27,4 +27,5 @@ Player1 = "<null>"
 [node name="Sword" parent="Player1" instance=ExtResource("4_04h03")]
 position = Vector2(0, 0)
 collision_layer = 2
-collision_mask = 12
+collision_mask = 28
+freeze = true
