@@ -44,9 +44,9 @@ func _physics_process(delta):
 	# kD * ((error - lastError) / delta) is something like dampening power. kD is a default dampening, and it  should
 	# decrease as the error gets close to the desired postition, and as it does it should go in the negatives,
 	#leading to a velocity decreaste (as it offsets the positive movement)
-	var force = kP * error + kD * ((error - lastError) / delta)
-	lastError = error
+	var force = kP * mass * error + kD * ((error - lastError) / delta)
 	# keep track of the error for next time
+	lastError = error
 # Look at cursor
 	point_to_cursor(RotOffset,force)
  #applies the rotational force from MouseVelocity
