@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@export_file() var Player1
+# Export sword to get mass and calculate velocity from hit based off of it
 # Player variables
 # Speed
 const Maxspeed = 500 # 500 default, this should change with swordsize
@@ -10,7 +10,7 @@ const friction = 400
 # Health variable
 var health = 100
 # Mass/Weight(?) For knockback when hit.
-var mass = 20
+var mass = 1
 var weight = 20
 # 'Wins' Variable
 var wins = 0
@@ -27,7 +27,10 @@ var dodgeVelocity: Vector2
 var being_collided:bool
 # Knockback variable. added this so that the players dont both knock each other back at the same time
 var knockback = Vector2.ZERO
+# store collider mass to apply proper knockback
+var colliderMass
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
+# when scene is created
 func _physics_process(delta):
 	var knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
 	move(delta)
@@ -40,7 +43,8 @@ func _physics_process(delta):
 			collision.get_collider_velocity() # Get the colliders velocity
 			# Get pushed back 
 			knockback = collision.get_collider_velocity()
-			velocity = knockback * input
+			colliderMass=collision.get_collider().mass
+			velocity = knockback * colliderMass
 
 
 	#If the dodge button is pressed AND the cooldown has expired..

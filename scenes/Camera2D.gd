@@ -8,7 +8,7 @@ func _ready():
 	var Player1 = get_node("Player1")
 	var GamePadPlayer = get_node("GamePadPlayer")
 var maxzoom = 1
-var minzoom = 0.2
+var minzoom = 0.0001 # was o,2
 func _physics_process(delta):
 	# align camera in between two players
 	position = (Player1.position + GamePadPlayer.position) * 0.5

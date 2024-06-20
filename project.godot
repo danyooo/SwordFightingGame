@@ -72,6 +72,26 @@ GPDodge={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+GPSwordLeft={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
+]
+}
+GPSwordRight={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
+]
+}
+GPSwordUp={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":-1.0,"script":null)
+]
+}
+GPSwordDown={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
+]
+}
 
 [layer_names]
 
@@ -80,3 +100,8 @@ GPDodge={
 2d_render/layer_3="Sword"
 2d_render/layer_4="EnemSword"
 2d_render/layer_5="Wall"
+2d_physics/layer_1="Player1"
+2d_physics/layer_2="Player1Sword"
+2d_physics/layer_3="GamePadPlayer"
+2d_physics/layer_4="GamePadSword"
+2d_physics/layer_5="Wall"
