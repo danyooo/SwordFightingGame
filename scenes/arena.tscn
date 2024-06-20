@@ -25,6 +25,7 @@ node_b = NodePath("../GamePadSword")
 bias = 0.508
 
 [node name="GamePadSword" parent="GamePadPlayer" instance=ExtResource("3_vol8y")]
+position = Vector2(0, 0)
 
 [node name="Player1" parent="." instance=ExtResource("1_sva22")]
 position = Vector2(718, 343)
