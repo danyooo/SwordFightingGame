@@ -28,9 +28,20 @@ const kD = 1
 # Error in this case refers to the current point of the sword ( and how far it is from the desired pos)
 # This is an error because.. it's not where it should be.
 var lastError = 0
-func _process(delta):
-	# Event to grab mouses velocity
-	_input(InputEventMouse)
+# take controller joystick inputs
+var input = Vector2.ZERO
+# Detect which way the player is moving (in number format)
+func getinput():
+	# Use VECTOR2 to support Diagonal Movement
+	# x value inputs
+	# If "RIGHT" is pressed, bool returns 1. Subracted by "left" is zero. That means we're going right
+	# Otherwise, it'll equal -1, going left.
+	# Int makes "true" or "false" into a number
+	# Get strength is reserved by joysticks, because joysticks can't exactly be pressed left or right.
+	input.x =Input.get_axis("GPSwordLeft","GPSwordRight")
+	# y value inputs
+	input.y =Input.get_axis("GPSwordUp","GPSwordDown")
+	return input.normalized()
 func _physics_process(delta):
 	# Error is the offset from point
 	# Get mouse postion // difference from sword to mouse
@@ -75,9 +86,9 @@ func _physics_process(delta):
 
 #otherwise length --, width --
 
-#Weight stat slows down momentum
 
-#Momentum increase as sword is swinging
+
+
 
 #Sword's weight increases damaage
 # Draw function party

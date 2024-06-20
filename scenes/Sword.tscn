@@ -1,24 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://byigixc1ocigg"]
+[gd_scene load_steps=5 format=3 uid="uid://cybhs5pbg643g"]
 
+[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="1_7p0xv"]
 [ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_cr4g2"]
-[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="2_5jeac"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm610"]
-size = Vector2(299.5, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e87ct"]
+size = Vector2(179, 34)
 
-[node name="Node" type="Node"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1u7q"]
+size = Vector2(181, 36)
 
-[node name="Sword" type="RigidBody2D" parent="."]
-collision_layer = 3
-collision_mask = 3
-gravity_scale = 0.0
+[node name="Sword" type="RigidBody2D"]
+position = Vector2(503, 338)
+freeze_mode = 1
 script = ExtResource("1_cr4g2")
 
-[node name="SwordSprite" type="Sprite2D" parent="Sword"]
-position = Vector2(646, 304)
-scale = Vector2(2.40234, 0.1875)
-texture = ExtResource("2_5jeac")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(78.5, -2.75001)
+scale = Vector2(1.39844, 0.261719)
+texture = ExtResource("1_7p0xv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
-position = Vector2(646, 304)
-shape = SubResource("RectangleShape2D_fm610")
+[node name="CollShape" type="CollisionShape2D" parent="."]
+position = Vector2(78.5, -3)
+shape = SubResource("RectangleShape2D_e87ct")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 28
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(78.5, -3)
+shape = SubResource("RectangleShape2D_p1u7q")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]

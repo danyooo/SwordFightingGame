@@ -1,5 +1,4 @@
 extends CharacterBody2D
-# Export sword to get mass and calculate velocity from hit based off of it
 # Player variables
 # Speed
 const Maxspeed = 500 # 500 default, this should change with swordsize
@@ -17,58 +16,65 @@ var wins = 0
 # "UsedWords" List that stores the previously used valid word.
 var UsedWords = []
 # DodgeTimer variable. This will go up or down depending on the wielded swords weight/size.
-var dodgecooldown = 3 #  10 seconds by default. * SwordWeight?
-# Dodge is available by default
+var dodgecooldown = 3 #  10 seconds by defa lt. * SwordWeight?
+ #Dodge is available by default
 var dodgeready = true
 var dodgeDist = 20 # 20 default affected by swordWeight.
 # Add a new velocity just for dodging
 var dodgeVelocity: Vector2
-# Collision variable
-var being_collided:bool
-# Knockback variable. added this so that the players dont both knock each other back at the same time
+# collision variable
+var being_collided :bool
+#knockback variable. added this so that the players dont both knock each other back at the same time
 var knockback = Vector2.ZERO
-# store collider mass to apply proper knockback
+# Store collider mass to apply proper knockback
 var colliderMass
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
-# when scene is created
 func _physics_process(delta):
+	print("swordmass ",colliderMass)
 	var knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
-	move(delta)
 	#if a collision occurs
 	if being_collided == true:
 		# What did you collide with?
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
+			print("Collided with: ", collision.get_collider().name)
 			# How fast was the collider moving?
 			collision.get_collider_velocity() # Get the colliders velocity
-			# Get pushed back 
+			print("Collider velocity is.. ", collision.get_collider_velocity())
+			# Get pushed back (within the bounds of max speed)
 			knockback = collision.get_collider_velocity()
 			colliderMass=collision.get_collider().mass
 			velocity = knockback * colliderMass
-
-
-	#If the dodge button is pressed AND the cooldown has expired..
-	
-	if Input.is_action_pressed("Dodge") && dodgeready == true:
+			
+			#velocity.limit_length(Maxspeed)
+			#velocity += collision.get_collider_velocity()
+	move(delta)
+	#If the dodge button is pressed..
+	if Input.is_action_pressed("GPDodge") && dodgeready == true:
 		# This will depend on the sword the player is wielding. The larger and heavier it is, the less distance and higher cooldown.
 		# Dodge!
 		Dodge(input,dodgeDist, delta)
 		# Dodge goes on cooldown
-		$dodgecooldowntimer.set_wait_time(dodgecooldown)
-		$dodgecooldowntimer.start()
+		$dodgecooldowntimer2.set_wait_time(dodgecooldown)
+		$dodgecooldowntimer2.start()
 		dodgeready = false
-
+#If <enemysword> touches player..
+	# How much momentum was the enemysword going by?
+	# What's the enemysword's damage stat? ( based on a swords weight/size)
+	# Multiply momentum x damage and apply damage to health!
 
 var input = Vector2.ZERO
 # Detect which way the player is moving (in number format)
 func getinput():
+	# Use VECTOR2 to support Diagonal Movement
 	# x value inputs
 	# If "RIGHT" is pressed, bool returns 1. Subracted by "left" is zero. That means we're going right
 	# Otherwise, it'll equal -1, going left.
 	# Int makes "true" or "false" into a number
-	input.x = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
+	# Get strength is reserved by joysticks, because joysticks can't exactly be pressed left or right.
+	input.x =Input.get_axis("GPLeft","GPRight")
 	# y value inputs
-	input.y = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
+	input.y =Input.get_axis("GPUp","GPDown")
 	return input.normalized()
 
 func move(delta):
@@ -86,7 +92,6 @@ func move(delta):
 	else:
 		# Move in the direction the player wants to move
 		velocity += (input * accel * delta)
-		# To dodge past max speed, add dodgevelocity ( so dodging isn't capped)
 		velocity = velocity.limit_length(Maxspeed) + dodgeVelocity
 		dodgeVelocity = Vector2.ZERO
 	move_and_slide()
@@ -99,28 +104,18 @@ func Dodge(Pinput,distance, delta):
 	# jump forwards
 	print("Dodged!")
 	dodgeVelocity = ( Pinput * accel *  distance *  delta)
-#If <enemysword> touches player..
-	# How much momentum was the enemysword going by?
-	# What's the enemysword's damage stat? ( based on a swords weight/size)
-	# Multiply momentum x damage and apply damage to health!
-
-
-
-
-
-	#When the tiemr is done
-func _on_dodgecooldowntimer_timeout():
-	# Set dodge ready to true
-	print("Dodge Ready! for keyboard!")
+func _on_dodgecooldowntimer_2_timeout():
+# Set dodge ready to true
+	print("Dodge Ready! for GamePad!")
 	dodgeready = true
-	# stop the timer
-	$dodgecooldowntimer.stop()
+	$dodgecooldowntimer2.stop()
 
-# on collisison
+
+
 func _on_area_2d_area_entered(area):
-	print("player 1 collission!")
 	being_collided = true
-	
+	print("Player 2 collission!")
+
+
 func _on_collision_detector_area_exited(area):
-	print("no collissions for P1")
-	var being_collided = false
+	being_collided = false
