@@ -1,6 +1,4 @@
 extends CharacterBody2D
-# Export the character's file for use in other scripts
-@export_file() var GamePadPlayer
 # Player variables
 # Speed
 const Maxspeed = 500 # 500 default, this should change with swordsize
@@ -11,12 +9,13 @@ const friction = 400
 # Health variable
 var health = 100
 # Mass/Weight(?) For knockback when hit.
-var mass = 20
+var mass = 1
 var weight = 20
 # 'Wins' Variable
 var wins = 0
 # "UsedWords" List that stores the previously used valid word.
 var UsedWords = []
+# DodgeTimer variable. This will go up or down depending on the wielded swords weight/size.
 var dodgecooldown = 3 #  10 seconds by defa lt. * SwordWeight?
  #Dodge is available by default
 var dodgeready = true
@@ -27,8 +26,11 @@ var dodgeVelocity: Vector2
 var being_collided :bool
 #knockback variable. added this so that the players dont both knock each other back at the same time
 var knockback = Vector2.ZERO
+# Store collider mass to apply proper knockback
+var colliderMass
 # Equivalent of "Draw" Function. Delta is telling it to process from the last complete frame
 func _physics_process(delta):
+	print("swordmass ",colliderMass)
 	var knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
 	#if a collision occurs
 	if being_collided == true:
@@ -41,7 +43,8 @@ func _physics_process(delta):
 			print("Collider velocity is.. ", collision.get_collider_velocity())
 			# Get pushed back (within the bounds of max speed)
 			knockback = collision.get_collider_velocity()
-			velocity = knockback
+			colliderMass=collision.get_collider().mass
+			velocity = knockback * colliderMass
 			
 			#velocity.limit_length(Maxspeed)
 			#velocity += collision.get_collider_velocity()

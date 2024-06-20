@@ -17,12 +17,10 @@ GamePadPlayer = NodePath("../GamePadPlayer")
 
 [node name="GamePadPlayer" parent="." instance=ExtResource("2_wqja0")]
 position = Vector2(409, 333)
-GamePadPlayer = "<null>"
 
 [node name="Player1" parent="." instance=ExtResource("1_sva22")]
 position = Vector2(718, 343)
 collision_mask = 28
-Player1 = "<null>"
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Player1"]
 node_a = NodePath("..")
@@ -33,5 +31,6 @@ bias = 0.508
 position = Vector2(0, 0)
 collision_layer = 2
 collision_mask = 28
+mass = 0.1
 gravity_scale = 0.0
 angular_damp = 2.0

@@ -113,6 +113,5 @@ func point_to_cursor(offset,force):
 	#use a PID controller to disable the fluctuations of the sword
 	if offset > 0:
 		apply_torque(500 * force)
-		print(force)
 	elif offset < 0:
 		apply_torque(500 * force)
