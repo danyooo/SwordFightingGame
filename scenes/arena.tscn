@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjlt52x552as5"]
+[gd_scene load_steps=6 format=3 uid="uid://cjlt52x552as5"]
 
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="1_bqpap"]
 [ext_resource type="PackedScene" uid="uid://dvkrqse3mj8bf" path="res://scenes/player.tscn" id="1_sva22"]
 [ext_resource type="PackedScene" uid="uid://dyfg34pg83xpy" path="res://scenes/gamepadplayer.tscn" id="2_wqja0"]
+[ext_resource type="PackedScene" uid="uid://d183nqkhe7efa" path="res://scenes/GamePadSword.tscn" id="3_vol8y"]
 [ext_resource type="PackedScene" uid="uid://cybhs5pbg643g" path="res://scenes/Sword.tscn" id="4_04h03"]
 
 [node name="Arena" type="Node2D"]
@@ -18,6 +19,13 @@ GamePadPlayer = NodePath("../GamePadPlayer")
 [node name="GamePadPlayer" parent="." instance=ExtResource("2_wqja0")]
 position = Vector2(409, 333)
 
+[node name="PinJoint2D" type="PinJoint2D" parent="GamePadPlayer"]
+node_a = NodePath("..")
+node_b = NodePath("../GamePadSword")
+bias = 0.508
+
+[node name="GamePadSword" parent="GamePadPlayer" instance=ExtResource("3_vol8y")]
+
 [node name="Player1" parent="." instance=ExtResource("1_sva22")]
 position = Vector2(718, 343)
 collision_mask = 28
@@ -31,6 +39,5 @@ bias = 0.508
 position = Vector2(0, 0)
 collision_layer = 2
 collision_mask = 28
-mass = 0.1
 gravity_scale = 0.0
 angular_damp = 2.0

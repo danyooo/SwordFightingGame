@@ -1,3 +1,61 @@
-[gd_scene format=3 uid="uid://d183nqkhe7efa"]
+[gd_scene load_steps=7 format=3 uid="uid://d183nqkhe7efa"]
 
-[node name="GamePadSword" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/GamePadSword.gd" id="1_hleae"]
+[ext_resource type="Texture2D" uid="uid://cecbk0aus66hl" path="res://Assets/icon.svg" id="2_ejpno"]
+[ext_resource type="Texture2D" uid="uid://b6qcdkd1hujqn" path="res://Assets/manz.png" id="3_i2i3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e87ct"]
+size = Vector2(179, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1u7q"]
+size = Vector2(181, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n4uy5"]
+radius = 2.23607
+
+[node name="GamePadSword" type="RigidBody2D"]
+position = Vector2(261, 210)
+collision_layer = 8
+collision_mask = 19
+gravity_scale = 0.0
+freeze_mode = 1
+angular_damp = 2.0
+script = ExtResource("1_hleae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(78.5, -2.75001)
+scale = Vector2(1.39844, 0.261719)
+texture = ExtResource("2_ejpno")
+
+[node name="CollShape" type="CollisionShape2D" parent="."]
+position = Vector2(78.5, -3)
+shape = SubResource("RectangleShape2D_e87ct")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 28
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(78.5, -3)
+shape = SubResource("RectangleShape2D_p1u7q")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(237, 0)
+node_a = NodePath("..")
+node_b = NodePath("../Cursor")
+
+[node name="Cursor" type="RigidBody2D" parent="."]
+position = Vector2(237, 0)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Cursor"]
+position = Vector2(-3.8147e-06, 3.8743e-06)
+scale = Vector2(0.0390625, 0.0390625)
+texture = ExtResource("3_i2i3o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
+shape = SubResource("CircleShape2D_n4uy5")
+disabled = true
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]
